@@ -5,6 +5,9 @@ RUN apt-get install -y git gcc-multilib libc6-dev make sbcl
 RUN git clone http://github.com/larsbrinkhoff/lbForth
 RUN (cd lbForth && ./configure && make)
 RUN rm -rf lbForth/.git lbForth/lisp lbForth/doc
+RUN apt-get purge -y git gcc-multilib libc6-dev make sbcl
+RUN apt-get autoremove -y
+RUN apt-get clean
 
 WORKDIR /lbForth
 CMD ./forth
